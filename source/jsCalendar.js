@@ -27,7 +27,7 @@
  */
 
     //Plant Button
-    //not currently functional
+    //
     console.log("Hello");
 
      var plantButton = document.createElement("input");
