@@ -26,22 +26,87 @@
  *
  */
 
-    //Plant Button
-    //comment
-    console.log("Hello");
+   function init() {
+    console.log("Plant Calendar Activated");
+   }
+   init();
 
-     var plantButton = document.createElement("input");
+var jsCalendar = (function(){
+
+    var plantText = ""
+
+    //plants array
+    let plants = [];
+    //end plants array
+
+    //plant text input
+    var plantTextInput = document.createElement("INPUT");
+    plantTextInput.setAttribute("id", "plantTextInput");
+    //plantTextInput.setAttribute("value", plantText);
+    document.body.appendChild(plantTextInput);
+    //end plant text input
+    //console.log(document.getElementById("plantTextInput"));
+
+    //Plant Button
+    var plantButton = document.createElement("input");
     plantButton.type = "button";
     plantButton.value = "Add Plant";
     plantButton.onclick = plantButtonClick;
     document.body.appendChild(plantButton);
-
+            
     function plantButtonClick() {
         console.log("Plant Button Clicked");
-    }
-        //end Plant Button
 
-var jsCalendar = (function(){
+        plants.push(document.getElementById("plantTextInput").value);
+        updatePlantsLabel();
+
+            
+        
+        
+//FIX ARRAY, i dont think plants are being stored, but myGardenlabel works
+        console.log(plants[0].value);
+
+        for(i = 0; i <= plants - 1; i++) {
+            
+        }
+    }
+ //
+
+    //end Plant Button  
+  
+
+
+        //Plant Label
+        var myGardenLabel = document.createElement("label");
+
+        //myGardenLabel.textContent = "My Plants :";
+        document.body.appendChild(myGardenLabel)
+        //end plant label
+
+
+
+    function updatePlantsLabel() {
+        //adding all current plants to label
+            if(plants[0] != null) {
+                plantText = "My Plants: "
+                for(i = 0; i <= plants.length - 1; i++) {
+                    if(i == 0) {
+                        (plantText += plants[i]);
+                    } else {
+                    plantText += (" , " + plants[i]);
+                    //myGardenLabel.textContent +=  plants[i];
+                    }
+                }
+            }
+            myGardenLabel.textContent = "";
+            myGardenLabel.textContent = plantText;
+        }
+
+
+
+//end setting up plant UI
+
+
 
     // Constructor
     function JsCalendar(){

@@ -28,17 +28,11 @@
 
 /* plant buton
 */
-.plantBtn {
-	position: absolute;
-	top: 20px;
-	left: 250px;
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	border: none;
-	color: #4CAF50;
-	background-color: rgb(51, 255, 0);
+
+.jsCalendar .plantButton {
+	background: #03A9F4;
 }
+
 
 /* end plant buton
 */
@@ -58,11 +52,11 @@
 		}
 	/* Blue default */
 		.jsCalendar table {
-			background-color: #FFFFFF;
+			background-color: #87ca73;
 			border-collapse: collapse;
 			border-radius: 4px;
 			box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
-			color: #000000;
+			color: #ffffff;
 			font-family: Tahoma, Geneva, sans-serif;
 			margin: 5px;
 		}
@@ -82,7 +76,7 @@
 		.jsCalendar thead .jsCalendar-nav-left,
 		.jsCalendar thead .jsCalendar-nav-right {
 			border-radius: 10px;
-			color: #999999;
+			color: #2c2c2c;
 			cursor: pointer;
 			font-family: "Courier New", Courier, monospace;
 			font-size: 12px;
@@ -96,7 +90,7 @@
 		}
 		.jsCalendar thead .jsCalendar-nav-left:hover,
 		.jsCalendar thead .jsCalendar-nav-right:hover {
-			background-color: #E2E2E2;
+			background-color: #ff0101;
 			color: #000000;
 		}
 		.jsCalendar thead .jsCalendar-nav-left {
@@ -113,10 +107,10 @@
 			padding: 0 20px;
 		}
 		.jsCalendar thead .jsCalendar-nav-left:after {
-			content: "<";
+			content: "<-";
 		}
 		.jsCalendar thead .jsCalendar-nav-right:after {
-			content: ">";
+			content: "->";
 		}
 		.jsCalendar thead .jsCalendar-week-days th {
 			text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
@@ -136,19 +130,19 @@
 			width: 36px;
 		}
 		.jsCalendar tbody td:hover {
-			background-color: #E6E6E6;
+			background-color: #29ccf5;
 		}
 		.jsCalendar tbody td.jsCalendar-selected {
-			background-color: #FFFFFF;
+			background-color: #fbff01;
 			border: 2px solid #E6E6E6;
 			height: 32px;
 			line-height: 32px;
 			width: 32px;
 		}
 		.jsCalendar tbody td.jsCalendar-current {
-			background-color: #52C9FF;
+			background-color: #fbff00;
 			border-radius: 18px;
-			color: #FFFFFF;
+			color: #000000;
 		}
 		.jsCalendar tbody td.jsCalendar-previous,
 		.jsCalendar tbody td.jsCalendar-next,
