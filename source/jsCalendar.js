@@ -695,6 +695,9 @@ var jsCalendar = (function(){
 
             // Event listeners
             this._elements.navLeft.addEventListener('click', function(event){
+               
+                //PREVIOUS MONTH
+                
                 that.previous();
                 var date = new Date(that._date.getTime());
                 date.setDate(1);
