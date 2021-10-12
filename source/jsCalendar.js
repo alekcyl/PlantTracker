@@ -33,6 +33,17 @@
 
 var jsCalendar = (function(){
 
+
+    var currentSelectedDay;
+    //label to select current day
+    var plantDayText = document.createElement("label");
+    plantDayText.setAttribute("id", "plantDayText");
+    document.body.appendChild(plantDayText);
+
+    function updateCurrentDaySelection() {
+        plantDayText.textContent = "Current Day Selected: " + currentSelectedDay + " : Your Tasks for the day: ";
+    }
+
     var plantText = ""
 
     //plants array
@@ -53,7 +64,7 @@ var jsCalendar = (function(){
     plantButton.value = "Add Plant";
     plantButton.onclick = plantButtonClick;
     document.body.appendChild(plantButton);
-            
+    
     function plantButtonClick() {
         console.log("Plant Button Clicked");
 
@@ -480,6 +491,8 @@ var jsCalendar = (function(){
         this._elements.body = document.createElement('tbody');
         this._elements.table.appendChild(this._elements.body);
 
+    
+
         // Insert on page
         this._target.appendChild(this._elements.table);
     };
@@ -731,19 +744,38 @@ var jsCalendar = (function(){
             this._elements.body.appendChild(this._elements.bodyRows[i]);
             // 7 days
             for (j = 0; j < 7; j++) {
-                this._elements.bodyCols.push(document.createElement('td'));
+                this._elements.bodyCols.push(document.createElement('td')
+                );
                 this._elements.bodyRows[i].appendChild(this._elements.bodyCols[i * 7 + j]);
                 this._elements.bodyCols[i * 7 + j].addEventListener('click', (function(index){
                     return function (event) {
                         that._eventFire('date', that._active[index], event);
+
+
+                        //WHEN TD IS CLICKED
+
+                        //console.log("CLICKED");
+                        //console.log(that._active[index]);
+
+                        //var tempDateString = that._active[index]; 
+                        
+                        var tempDateString = JSON.stringify(that._active[index]);
+                        var tempDateStringNumber = tempDateString.substring(9,11);
+                        console.log(tempDateString);
+                        console.log(tempDateStringNumber);
+                        
+                        currentSelectedDay = tempDateStringNumber;
+                        updateCurrentDaySelection();
+    
+
                     };
                 })(i * 7 + j), false);
             }
         }
-
         // Extensions call create
         this.extensionsCall('create', [this._elements]);
     };
+    
 
     // Select dates on calendar
     JsCalendar.prototype._selectDates = function(dates) {
@@ -966,6 +998,9 @@ var jsCalendar = (function(){
     // Add a event listeners
     JsCalendar.prototype.onDateClick = function(callback) {
         return this._on('date', callback);
+
+        
+        
     };
     JsCalendar.prototype.onMonthChange = function(callback) {
         return this._on('month', callback);
@@ -1619,6 +1654,7 @@ var jsCalendar = (function(){
         // Get calendars
         JsCalendar.autoFind();
     }, false);
+
 
     // Return
     return JsCalendar;

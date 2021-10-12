@@ -62,6 +62,7 @@
 		}
 		.jsCalendar tr {
 			line-height: 0;
+
 		}
 		.jsCalendar thead .jsCalendar-title {
 			height: 40px;
@@ -120,7 +121,7 @@
 			border-radius: 18px;
 			cursor: default;
 			display: inline-block;
-			font-size: 12px;
+			font-size: 20px;
 			font-weight: lighter;
 			height: 36px;
 			line-height: 36px;
@@ -139,6 +140,7 @@
 			line-height: 32px;
 			width: 32px;
 		}
+		
 		.jsCalendar tbody td.jsCalendar-current {
 			background-color: #fbff00;
 			border-radius: 18px;
