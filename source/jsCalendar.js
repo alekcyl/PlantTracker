@@ -26,16 +26,31 @@
  *
  */
 
-   function init() {
-    console.log("Plant Calendar Activated");
-   }
-   init();
+ 
+
+   //I THINK I NEED TO MAKE SOME KIND OF FORM
+//MAKE A PLANT OBJECT: data needed
+//WATER DAYS - "MON TUE WED THU FRI SAT SUN"
+//WATER AMOUNT
+//FERTALIZE DAYS - "MON TUE WED THU FRI SAT SUN"
+//FERTALIZER COMPOSITION "N P K"
+//FERTALIZER AMOUNT
+//NAME OF PLANT - FOR IDENTITY
+//NICKNAME OF PLANT
+//SUNLIGHT HOURS
+//SUN INTENSITY
+//
+//How i plan to connect data to calendar
+//when calendar loads , get current day
+//iterate through plant objects looking for plants that
+//need to be watered on current day of week
+//display the nickname of all of these plants
+
 
 var jsCalendar = (function(){
 
-
     var currentSelectedDay;
-    //label to select current day
+    //label to display current day
     var plantDayText = document.createElement("label");
     plantDayText.setAttribute("id", "plantDayText");
     document.body.appendChild(plantDayText);
@@ -44,20 +59,15 @@ var jsCalendar = (function(){
         plantDayText.textContent = "Current Day Selected: " + currentSelectedDay + " : Your Tasks for the day: ";
     }
 
-    var plantText = ""
-
     //plants array
     let plants = [];
-    //end plants array
-
+    
     //plant text input
     var plantTextInput = document.createElement("INPUT");
     plantTextInput.setAttribute("id", "plantTextInput");
-    //plantTextInput.setAttribute("value", plantText);
     document.body.appendChild(plantTextInput);
     //end plant text input
-    //console.log(document.getElementById("plantTextInput"));
-
+    
     //Plant Button
     var plantButton = document.createElement("input");
     plantButton.type = "button";
@@ -70,10 +80,7 @@ var jsCalendar = (function(){
 
         plants.push(document.getElementById("plantTextInput").value);
         updatePlantsLabel();
-
-            
-        
-        
+   
 //FIX ARRAY, i dont think plants are being stored, but myGardenlabel works
         console.log(plants[0].value);
 
@@ -81,19 +88,12 @@ var jsCalendar = (function(){
             
         }
     }
- //
-
     //end Plant Button  
   
-
-
-        //Plant Label
+        //Plant Label, displays all plant objects
         var myGardenLabel = document.createElement("label");
-
-        //myGardenLabel.textContent = "My Plants :";
         document.body.appendChild(myGardenLabel)
         //end plant label
-
 
 
     function updatePlantsLabel() {
@@ -112,12 +112,6 @@ var jsCalendar = (function(){
             myGardenLabel.textContent = "";
             myGardenLabel.textContent = plantText;
         }
-
-
-
-//end setting up plant UI
-
-
 
     // Constructor
     function JsCalendar(){
@@ -751,13 +745,7 @@ var jsCalendar = (function(){
                     return function (event) {
                         that._eventFire('date', that._active[index], event);
 
-
                         //WHEN TD IS CLICKED
-
-                        //console.log("CLICKED");
-                        //console.log(that._active[index]);
-
-                        //var tempDateString = that._active[index]; 
                         
                         var tempDateString = JSON.stringify(that._active[index]);
                         var tempDateStringNumber = tempDateString.substring(9,11);
