@@ -62,6 +62,156 @@ var jsCalendar = (function(){
     //plants array
     let plants = [];
     
+
+    //plant adder
+
+    var plantForm = document.createElement("form");
+    plantForm.setAttribute("method", "post");
+    plantForm.setAttribute("id", "plantInputForm");
+
+    var br = document.createElement("br");
+    //plant name inputs
+    var plantNameInput = document.createElement("input");
+    plantNameInput.setAttribute("type", "text");
+    plantNameInput.setAttribute("name", "plant type");
+    plantNameInput.setAttribute("placeholder", "Plant Type");
+
+    var plantNicknameInput = document.createElement("input");
+    plantNicknameInput.setAttribute("type", "text");
+    plantNicknameInput.setAttribute("name", "plant nickname");
+    plantNicknameInput.setAttribute("placeholder", "Plant Nickname");
+
+    //water inputs
+    var waterAmountInput = document.createElement("input");
+    waterAmountInput.setAttribute("type", "text");
+    waterAmountInput.setAttribute("name", "water amount");
+    waterAmountInput.setAttribute("placeholder", "Water Amount");
+
+    var daysWaterLabel = document.createElement("label");
+    daysWaterLabel.setAttribute("id", "daysWaterLabel");
+    daysWaterLabel.textContent = "Select Watering Days!";
+
+
+    var waterMondayLabel = document.createElement("label");
+    waterMondayLabel.setAttribute("id", "waterMondayLabel");
+    waterMondayLabel.textContent = "Monday";
+    var waterDaysMondayInput = document.createElement("input");
+    waterDaysMondayInput.setAttribute("type", "checkbox");
+    waterDaysMondayInput.setAttribute("name", "monday");
+    
+    var waterTuesdayLabel = document.createElement("label");
+    waterTuesdayLabel.setAttribute("id", "waterTuesdayLabel");
+    waterTuesdayLabel.textContent = "Tuesday";
+    var waterDaysTuesdayInput = document.createElement("input");
+    waterDaysTuesdayInput.setAttribute("type", "checkbox");
+    waterDaysTuesdayInput.setAttribute("name", "tuesday");
+
+    var waterWednesdayLabel = document.createElement("label");
+    waterWednesdayLabel.setAttribute("id", "waterMondayLabel");
+    waterWednesdayLabel.textContent = "Wednesday";
+    var waterDaysWednesdayInput = document.createElement("input");
+    waterDaysWednesdayInput.setAttribute("type", "checkbox");
+    waterDaysWednesdayInput.setAttribute("name", "wednesday");
+
+    var waterThursdayLabel = document.createElement("label");
+    waterThursdayLabel.setAttribute("id", "waterThursdayLabel");
+    waterThursdayLabel.textContent = "Thursday";
+    var waterDaysThursdayInput = document.createElement("input");
+    waterDaysThursdayInput.setAttribute("type", "checkbox");
+    waterDaysThursdayInput.setAttribute("name", "thursday");
+
+    var waterFridayLabel = document.createElement("label");
+    waterFridayLabel.setAttribute("id", "waterFridayLabel");
+    waterFridayLabel.textContent = "Friday";
+    var waterDaysFridayInput = document.createElement("input");
+    waterDaysFridayInput.setAttribute("type", "checkbox");
+    waterDaysFridayInput.setAttribute("name", "friday");
+
+    var waterSaturdayLabel = document.createElement("label");
+    waterSaturdayLabel.setAttribute("id", "waterMondayLabel");
+    waterSaturdayLabel.textContent = "Saturday";
+    var waterDaysSaturdayInput = document.createElement("input");
+    waterDaysSaturdayInput.setAttribute("type", "checkbox");
+    waterDaysSaturdayInput.setAttribute("name", "saturday");
+
+    var waterSundayLabel = document.createElement("label");
+    waterSundayLabel.setAttribute("id", "waterSundayLabel");
+    waterSundayLabel.textContent = "Sunday";
+    var waterDaysSundayInput = document.createElement("input");
+    waterDaysSundayInput.setAttribute("type", "checkbox");
+    waterDaysSundayInput.setAttribute("name", "sunday");
+
+
+    //append to document
+    var submitPlantInput = document.createElement("input");
+    submitPlantInput.setAttribute("type", "submit");
+    submitPlantInput.setAttribute("value", "submit");
+
+    plantForm.appendChild(plantNameInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(plantNicknameInput);
+    plantForm.appendChild(br.cloneNode());
+    
+    plantForm.appendChild(daysWaterLabel);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterMondayLabel);
+    plantForm.appendChild(waterDaysMondayInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterTuesdayLabel);
+    plantForm.appendChild(waterDaysTuesdayInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterWednesdayLabel);
+    plantForm.appendChild(waterDaysWednesdayInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterThursdayLabel);
+    plantForm.appendChild(waterDaysThursdayInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterFridayLabel);
+    plantForm.appendChild(waterDaysFridayInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterSaturdayLabel);
+    plantForm.appendChild(waterDaysSaturdayInput);
+    plantForm.appendChild(br.cloneNode());
+
+    plantForm.appendChild(waterSundayLabel);
+    plantForm.appendChild(waterDaysSundayInput);
+    plantForm.appendChild(br.cloneNode());
+
+
+    plantForm.appendChild(submitPlantInput);
+    plantForm.appendChild(br.cloneNode());
+
+    document.getElementsByTagName("body")[0].appendChild(plantForm);
+
+    plantForm.addEventListener('submit', (event) => {
+        var newPlant = {
+            "type": document.getElementById('plantNameInput'),
+            "nickname": plantForm.elements['plantNicknameInput'],
+            "waterMonday": plantForm.elements['waterDaysMonday'],
+            "waterTuesday":plantForm.elements['waterDaysTuesday'],
+            "waterWednesday": plantForm.elements['waterDaysWednesday'],
+            "waterThursday": plantForm.elements['waterDaysThursday'],
+            "waterFriday": plantForm.elements['waterDaysFriday'],
+            "waterSaturday": plantForm.elements['waterDaysSaturday'],
+            "waterSunday": plantForm.elements['waterDaysSunday'],
+        }
+        
+        plants.push(newPlant);
+        console.log(plants[0]);
+        
+    });
+
+    
+    //
+
+
     //plant text input
     var plantTextInput = document.createElement("INPUT");
     plantTextInput.setAttribute("id", "plantTextInput");
@@ -77,13 +227,12 @@ var jsCalendar = (function(){
     
     function plantButtonClick() {
         console.log("Plant Button Clicked");
-
         plants.push(document.getElementById("plantTextInput").value);
+        console.log(plantTextInput);
         updatePlantsLabel();
    
 //FIX ARRAY, i dont think plants are being stored, but myGardenlabel works
-        console.log(plants[0].value);
-
+        console.log(plants[0]);
         for(i = 0; i <= plants - 1; i++) {
             
         }
