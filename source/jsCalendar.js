@@ -49,6 +49,11 @@
 
 var jsCalendar = (function(){
 
+    //plants array
+    var plants = [];
+
+    var plantInput;
+
     var currentSelectedDay;
     //label to display current day
     var plantDayText = document.createElement("label");
@@ -57,12 +62,8 @@ var jsCalendar = (function(){
 
     function updateCurrentDaySelection() {
         plantDayText.textContent = "Current Day Selected: " + currentSelectedDay + " : Your Tasks for the day: ";
-    }
-
-    //plants array
-    let plants = [];
-    
-
+    }    
+    var formData;
     //plant adder
 
     var plantForm = document.createElement("form");
@@ -78,7 +79,7 @@ var jsCalendar = (function(){
 
     var plantNicknameInput = document.createElement("input");
     plantNicknameInput.setAttribute("type", "text");
-    plantNicknameInput.setAttribute("name", "plant nickname");
+    plantNicknameInput.setAttribute("name", "nickname");
     plantNicknameInput.setAttribute("placeholder", "Plant Nickname");
 
     //water inputs
@@ -141,7 +142,6 @@ var jsCalendar = (function(){
     waterDaysSundayInput.setAttribute("type", "checkbox");
     waterDaysSundayInput.setAttribute("name", "sunday");
 
-
     //append to document
     var submitPlantInput = document.createElement("input");
     submitPlantInput.setAttribute("type", "submit");
@@ -190,52 +190,78 @@ var jsCalendar = (function(){
 
     document.getElementsByTagName("body")[0].appendChild(plantForm);
 
-    plantForm.addEventListener('submit', (event) => {
-        var newPlant = {
-            "type": document.getElementById('plantNameInput'),
-            "nickname": plantForm.elements['plantNicknameInput'],
-            "waterMonday": plantForm.elements['waterDaysMonday'],
-            "waterTuesday":plantForm.elements['waterDaysTuesday'],
-            "waterWednesday": plantForm.elements['waterDaysWednesday'],
-            "waterThursday": plantForm.elements['waterDaysThursday'],
-            "waterFriday": plantForm.elements['waterDaysFriday'],
-            "waterSaturday": plantForm.elements['waterDaysSaturday'],
-            "waterSunday": plantForm.elements['waterDaysSunday'],
-        }
-        
-        plants.push(newPlant);
-        console.log(plants[0]);
-        
+document.querySelector('form').addEventListener('submit', (e) => {
+    formData = new FormData(e.target);
+    
+    var plantTypeIn = formData.get('plant type');
+    var plantNiIn = formData.get('nickname');
+    var monIn = formData.get('monday');
+    var tueIn = formData.get('tuesday');
+    var wedIn = formData.get('wednesday');
+    var thuIn = formData.get('thursday');
+    var friIn = formData.get('friday');
+    var satIn = formData.get('saturday');
+    var sunIn = formData.get('sunday');
+
+
+    if (plantTypeIn == null) {
+        plantTypeIn = "empty"
+    }
+
+    if (plantNiIn == null) {
+        plantNiIn = "empty"
+    }
+    if (monIn == null) {
+        plantTypeIn = "no"
+    }
+    if (tueIn == null) {
+        tueIn = "no"
+    }
+    if (wedIn == null) {
+        wedIn = "no"
+    }
+    if (thuIn == null) {
+        thuIn = "no"
+    }
+    if (friIn == null) {
+        friIn = "no"
+    }
+    if (satIn == null) {
+        satIn = "no"
+    }
+    if (sunIn == null) {
+        sunIn = "no"
+    }
+
+    //var newPlant = 
+    plants.push({
+        "type": plantTypeIn,
+        "nickname": plantNiIn,
+        "waterMonday": monIn,
+        "waterTuesday": tueIn,
+        "waterWednesday": wedIn,
+        "waterThursday": thuIn,
+        "waterFriday": friIn,
+        "waterSaturday": satIn,
+        "waterSunday": sunIn,
     });
-
-    
-    //
-
-
-    //plant text input
-    var plantTextInput = document.createElement("INPUT");
-    plantTextInput.setAttribute("id", "plantTextInput");
-    document.body.appendChild(plantTextInput);
-    //end plant text input
-    
+    //plantInput = newPlant;
+    //console.log(newPlant);
+    //plants.push(newPlant);
+    console.log("plant pushed");
+  });    
     //Plant Button
     var plantButton = document.createElement("input");
     plantButton.type = "button";
-    plantButton.value = "Add Plant";
+    plantButton.value = "View Plants";
     plantButton.onclick = plantButtonClick;
     document.body.appendChild(plantButton);
     
     function plantButtonClick() {
-        console.log("Plant Button Clicked");
-        plants.push(document.getElementById("plantTextInput").value);
-        console.log(plantTextInput);
+        //console.log("Plant Button Clicked");
+        //console.log(plantInput);
+        //console.log(plants[0]);
         updatePlantsLabel();
-   
-//FIX ARRAY, i dont think plants are being stored, but myGardenlabel works
-        console.log(plants[0]);
-        for(i = 0; i <= plants - 1; i++) {
-            
-        }
     }
     //end Plant Button  
   
@@ -244,23 +270,31 @@ var jsCalendar = (function(){
         document.body.appendChild(myGardenLabel)
         //end plant label
 
-
+        var plantText;
     function updatePlantsLabel() {
         //adding all current plants to label
+        //console.log("Plants");
+       //console.log(plants[1]);
             if(plants[0] != null) {
-                plantText = "My Plants: "
+                plantText = ""
                 for(i = 0; i <= plants.length - 1; i++) {
-                    if(i == 0) {
-                        (plantText += plants[i]);
-                    } else {
-                    plantText += (" , " + plants[i]);
-                    //myGardenLabel.textContent +=  plants[i];
-                    }
+                    plantText += plants[i].type;
+                    plantText += plants[i].nickname;
+                    plantText += plants[i].waterMonday;
+                    plantText += plants[i].waterTuesday;
+                    plantText += plants[i].waterThursday;
+                    plantText += plants[i].waterFriday;
+                    plantText += plants[i].waterSaturday;
+                    plantText += plants[i].waterSunday;
                 }
             }
             myGardenLabel.textContent = "";
-            myGardenLabel.textContent = plantText;
+            myGardenLabel.textContent = plants[0];
+            document.getElementsByTagName("body")[0].appendChild(br.cloneNode());
+            document.getElementsByTagName("body")[0].appendChild(myGardenLabel);
+            //console.log(plantText);
         }
+        
 
     // Constructor
     function JsCalendar(){
