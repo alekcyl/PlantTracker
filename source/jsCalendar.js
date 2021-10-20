@@ -52,8 +52,6 @@ var jsCalendar = (function(){
     //plants array
     var plants = [];
 
-    var plantInput;
-
     var currentSelectedDay;
     //label to display current day
     var plantDayText = document.createElement("label");
@@ -66,26 +64,26 @@ var jsCalendar = (function(){
     var formData;
     //plant adder
 
-    var plantForm = document.createElement("form");
-    plantForm.setAttribute("method", "post");
+    var plantForm = document.createElement("div");
+    plantForm.setAttribute("method", "get");
     plantForm.setAttribute("id", "plantInputForm");
 
     var br = document.createElement("br");
     //plant name inputs
     var plantNameInput = document.createElement("input");
     plantNameInput.setAttribute("type", "text");
-    plantNameInput.setAttribute("name", "plant type");
+    plantNameInput.setAttribute("id", "plant type");
     plantNameInput.setAttribute("placeholder", "Plant Type");
 
     var plantNicknameInput = document.createElement("input");
     plantNicknameInput.setAttribute("type", "text");
-    plantNicknameInput.setAttribute("name", "nickname");
+    plantNicknameInput.setAttribute("id", "nickname");
     plantNicknameInput.setAttribute("placeholder", "Plant Nickname");
 
     //water inputs
     var waterAmountInput = document.createElement("input");
     waterAmountInput.setAttribute("type", "text");
-    waterAmountInput.setAttribute("name", "water amount");
+    waterAmountInput.setAttribute("id", "water amount");
     waterAmountInput.setAttribute("placeholder", "Water Amount");
 
     var daysWaterLabel = document.createElement("label");
@@ -98,49 +96,49 @@ var jsCalendar = (function(){
     waterMondayLabel.textContent = "Monday";
     var waterDaysMondayInput = document.createElement("input");
     waterDaysMondayInput.setAttribute("type", "checkbox");
-    waterDaysMondayInput.setAttribute("name", "monday");
+    waterDaysMondayInput.setAttribute("id", "monday");
     
     var waterTuesdayLabel = document.createElement("label");
     waterTuesdayLabel.setAttribute("id", "waterTuesdayLabel");
     waterTuesdayLabel.textContent = "Tuesday";
     var waterDaysTuesdayInput = document.createElement("input");
     waterDaysTuesdayInput.setAttribute("type", "checkbox");
-    waterDaysTuesdayInput.setAttribute("name", "tuesday");
+    waterDaysTuesdayInput.setAttribute("id", "tuesday");
 
     var waterWednesdayLabel = document.createElement("label");
     waterWednesdayLabel.setAttribute("id", "waterMondayLabel");
     waterWednesdayLabel.textContent = "Wednesday";
     var waterDaysWednesdayInput = document.createElement("input");
     waterDaysWednesdayInput.setAttribute("type", "checkbox");
-    waterDaysWednesdayInput.setAttribute("name", "wednesday");
+    waterDaysWednesdayInput.setAttribute("id", "wednesday");
 
     var waterThursdayLabel = document.createElement("label");
     waterThursdayLabel.setAttribute("id", "waterThursdayLabel");
     waterThursdayLabel.textContent = "Thursday";
     var waterDaysThursdayInput = document.createElement("input");
     waterDaysThursdayInput.setAttribute("type", "checkbox");
-    waterDaysThursdayInput.setAttribute("name", "thursday");
+    waterDaysThursdayInput.setAttribute("id", "thursday");
 
     var waterFridayLabel = document.createElement("label");
     waterFridayLabel.setAttribute("id", "waterFridayLabel");
     waterFridayLabel.textContent = "Friday";
     var waterDaysFridayInput = document.createElement("input");
     waterDaysFridayInput.setAttribute("type", "checkbox");
-    waterDaysFridayInput.setAttribute("name", "friday");
+    waterDaysFridayInput.setAttribute("id", "friday");
 
     var waterSaturdayLabel = document.createElement("label");
     waterSaturdayLabel.setAttribute("id", "waterMondayLabel");
     waterSaturdayLabel.textContent = "Saturday";
     var waterDaysSaturdayInput = document.createElement("input");
     waterDaysSaturdayInput.setAttribute("type", "checkbox");
-    waterDaysSaturdayInput.setAttribute("name", "saturday");
+    waterDaysSaturdayInput.setAttribute("id", "saturday");
 
     var waterSundayLabel = document.createElement("label");
     waterSundayLabel.setAttribute("id", "waterSundayLabel");
     waterSundayLabel.textContent = "Sunday";
     var waterDaysSundayInput = document.createElement("input");
     waterDaysSundayInput.setAttribute("type", "checkbox");
-    waterDaysSundayInput.setAttribute("name", "sunday");
+    waterDaysSundayInput.setAttribute("id", "sunday");
 
     //append to document
     var submitPlantInput = document.createElement("input");
@@ -190,50 +188,18 @@ var jsCalendar = (function(){
 
     document.getElementsByTagName("body")[0].appendChild(plantForm);
 
-document.querySelector('form').addEventListener('submit', (e) => {
-    formData = new FormData(e.target);
-    
-    var plantTypeIn = formData.get('plant type');
-    var plantNiIn = formData.get('nickname');
-    var monIn = formData.get('monday');
-    var tueIn = formData.get('tuesday');
-    var wedIn = formData.get('wednesday');
-    var thuIn = formData.get('thursday');
-    var friIn = formData.get('friday');
-    var satIn = formData.get('saturday');
-    var sunIn = formData.get('sunday');
+    submitPlantInput.addEventListener("click" , function() {
 
+    var plantTypeIn = document.getElementById('plant type').value;
+    var plantNiIn = document.getElementById('nickname').value;
+    var monIn = document.getElementById('monday').checked;
+    var tueIn = document.getElementById('tuesday').checked;
+    var wedIn = document.getElementById('wednesday').checked;
+    var thuIn = document.getElementById('thursday').checked;
+    var friIn = document.getElementById('friday').checked;
+    var satIn = document.getElementById('saturday').checked;
+    var sunIn = document.getElementById('sunday').checked;
 
-    if (plantTypeIn == null) {
-        plantTypeIn = "empty"
-    }
-
-    if (plantNiIn == null) {
-        plantNiIn = "empty"
-    }
-    if (monIn == null) {
-        plantTypeIn = "no"
-    }
-    if (tueIn == null) {
-        tueIn = "no"
-    }
-    if (wedIn == null) {
-        wedIn = "no"
-    }
-    if (thuIn == null) {
-        thuIn = "no"
-    }
-    if (friIn == null) {
-        friIn = "no"
-    }
-    if (satIn == null) {
-        satIn = "no"
-    }
-    if (sunIn == null) {
-        sunIn = "no"
-    }
-
-    //var newPlant = 
     plants.push({
         "type": plantTypeIn,
         "nickname": plantNiIn,
@@ -245,9 +211,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
         "waterSaturday": satIn,
         "waterSunday": sunIn,
     });
-    //plantInput = newPlant;
-    //console.log(newPlant);
-    //plants.push(newPlant);
+ 
     console.log("plant pushed");
   });    
     //Plant Button
@@ -258,9 +222,6 @@ document.querySelector('form').addEventListener('submit', (e) => {
     document.body.appendChild(plantButton);
     
     function plantButtonClick() {
-        //console.log("Plant Button Clicked");
-        //console.log(plantInput);
-        //console.log(plants[0]);
         updatePlantsLabel();
     }
     //end Plant Button  
@@ -272,28 +233,27 @@ document.querySelector('form').addEventListener('submit', (e) => {
 
         var plantText;
     function updatePlantsLabel() {
-        //adding all current plants to label
-        //console.log("Plants");
-       //console.log(plants[1]);
-            if(plants[0] != null) {
-                plantText = ""
-                for(i = 0; i <= plants.length - 1; i++) {
-                    plantText += plants[i].type;
-                    plantText += plants[i].nickname;
-                    plantText += plants[i].waterMonday;
-                    plantText += plants[i].waterTuesday;
-                    plantText += plants[i].waterThursday;
-                    plantText += plants[i].waterFriday;
-                    plantText += plants[i].waterSaturday;
-                    plantText += plants[i].waterSunday;
-                }
-            }
-            myGardenLabel.textContent = "";
-            myGardenLabel.textContent = plants[0];
-            document.getElementsByTagName("body")[0].appendChild(br.cloneNode());
-            document.getElementsByTagName("body")[0].appendChild(myGardenLabel);
-            //console.log(plantText);
+       if(plants[0] != null) {
+        plantText = ""
+        for(i = 0; i <= plants.length - 1; i++) {
+            plantText += (" Plant Type: " + plants[i].type);
+            plantText += (" Plant Nickname: " + plants[i].nickname);
+            plantText += (" Water Monday: " + plants[i].waterMonday);
+            plantText += (" Water Tuesday: " + plants[i].waterTuesday);
+            plantText += (" Water Wednesday: " + plants[i].waterWednesday);
+            plantText += (" Water Thursday: " + plants[i].waterThursday);
+            plantText += (" Water Friday: " + plants[i].waterFriday);
+            plantText += (" Water Saturday: " + plants[i].waterSaturday);
+            plantText += (" Water Sunday: " + plants[i].waterSunday);
         }
+        }
+    myGardenLabel.textContent = "";
+    myGardenLabel.textContent = plantText;
+    document.getElementsByTagName("body")[0].appendChild(br.cloneNode());
+    document.getElementsByTagName("body")[0].appendChild(myGardenLabel);
+    //console.log(plantText);
+
+    }
         
 
     // Constructor
