@@ -689,12 +689,24 @@ var jsCalendar = (function(){
 
                         //WHEN TD IS CLICKED
                         
+                        //String with day number
                         var tempDateString = JSON.stringify(that._active[index]);
-                        var tempDateStringNumber = tempDateString.substring(9,11);
-                        console.log(tempDateString);
-                        console.log(tempDateStringNumber);
+                        var dateStringNumber = tempDateString.substring(9,11);
+
+                        //String with day text
+                        var tempDateStringForDay = String(that._active[index]);
+                        var dayString = tempDateStringForDay.substring(0,3);
                         
-                        currentSelectedDay = tempDateStringNumber;
+                        getDay(dayString);
+                        //console.log(tempDateStringForDay);
+                        //console.log(that._active[index]);
+                        //console.log(tempDateString);
+                        //console.log(dateStringNumber);
+                        //console.log(dayString);
+
+                        
+                        
+                        currentSelectedDay = dateStringNumber;
                         updateCurrentDaySelection();
     
 
@@ -1603,7 +1615,7 @@ var jsCalendar = (function(){
     //plant form visibility button
   var addNewPlantButton = document.createElement("input");
   addNewPlantButton.type = "button";
-  addNewPlantButton.value = "Add New Plant";
+  addNewPlantButton.value = "Toggle New Plant Menu";
   addNewPlantButton.setAttribute("id", "addNewPlantButton");
   addNewPlantButton.addEventListener('click', addNewPlantButtonOnClick);
   document.body.appendChild(addNewPlantButton);
@@ -1810,6 +1822,56 @@ var jsCalendar = (function(){
     console.log("plant pushed");
   });    
 
+  var currentDayPlants = [];
+  function getDay(input) {
+    //console.log(input);
+    for(i = 0; i < plants.length; i++) {
+        if(isNicknameUsed(plants[i].nickname)) {
+            //dont add plant again
+        }else if(input == "Mon") {
+            if(plants[i].waterMonday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        } else if(input == "Tue") {
+            if(plants[i].waterTuesday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        }else if(input == "Wed") {
+            if(plants[i].waterWednesday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        }else if(input == "Thu") {
+            if(plants[i].waterThursday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        }else if(input == "Fri") {
+            if(plants[i].waterFriday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        }else if(input == "Sat") {
+            if(plants[i].waterSaturday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        }else if(input == "Sun") {
+            if(plants[i].waterSunday == true) {
+                currentDayPlants.push(plants[i]);
+            }
+        } else{
+            console.log("error in Get Day");
+        }
+
+    }
+
+    //console.log(currentDayPlants.length);
+  }
+  function isNicknameUsed(nickname) {
+      for(i = 0; i < currentDayPlants.length; i++) {
+          if(currentDayPlants[i].nickname == nickname) {
+              return true;
+          }
+      }
+      return false;
+  }
 
   
 
