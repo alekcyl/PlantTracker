@@ -53,7 +53,7 @@ var jsCalendar = (function(){
     var plants = [];
     var currentSelectedDay;
     var plantFormVisibility = true;
-        
+    var currentDayPlants = [];
 
     // Constructor
     function JsCalendar(){
@@ -696,8 +696,10 @@ var jsCalendar = (function(){
                         //String with day text
                         var tempDateStringForDay = String(that._active[index]);
                         var dayString = tempDateStringForDay.substring(0,3);
-                        
+
+                        //currentDayPlants = [];
                         getDay(dayString);
+                        //displayPlantCare();
                         //console.log(tempDateStringForDay);
                         //console.log(that._active[index]);
                         //console.log(tempDateString);
@@ -1822,23 +1824,44 @@ var jsCalendar = (function(){
     console.log("plant pushed");
   });    
 
-  var currentDayPlants = [];
+
+  var currentDayDisplay = document.createElement('div');
+  var currentDayDisplayHeading = document.createElement('label');
+  currentDayDisplay.textContent = "Plants to Water:";
+  var plantsToWaterLabel = document.createElement('label');
+  var waterText = "";
+
+  currentDayDisplay.appendChild(plantsToWaterLabel);
+  currentDayDisplay.appendChild(currentDayDisplayHeading);
+  document.body.appendChild(currentDayDisplay);
+
+  function displayPlantCare() {
+
+}
+
+  
+  
   function getDay(input) {
     //console.log(input);
+    if(plants.length != null) {
     for(i = 0; i < plants.length; i++) {
-        if(isNicknameUsed(plants[i].nickname)) {
-            //dont add plant again
-        }else if(input == "Mon") {
+        //console.log(i);
+
+        
+       if(input == "Mon") {
             if(plants[i].waterMonday == true) {
                 currentDayPlants.push(plants[i]);
+                
             }
         } else if(input == "Tue") {
             if(plants[i].waterTuesday == true) {
                 currentDayPlants.push(plants[i]);
+                
             }
         }else if(input == "Wed") {
             if(plants[i].waterWednesday == true) {
                 currentDayPlants.push(plants[i]);
+                
             }
         }else if(input == "Thu") {
             if(plants[i].waterThursday == true) {
@@ -1859,19 +1882,37 @@ var jsCalendar = (function(){
         } else{
             console.log("error in Get Day");
         }
+        
+    }
+    //displayPlantCare();
+    if(currentDayPlants != null) {
+        for(i = 0; i < currentDayPlants.length; i++) {
+            waterText += currentDayPlants[i].nickname + "  ";
+        }
+        currentDayPlants = [];
+        plantsToWaterLabel.textContent = waterText;
+        waterText = "";
+    } else {
+        console.log("no plant care")
+    }
+
+
+
 
     }
 
     //console.log(currentDayPlants.length);
   }
   function isNicknameUsed(nickname) {
+      if(currentDayPlants != null) {
       for(i = 0; i < currentDayPlants.length; i++) {
           if(currentDayPlants[i].nickname == nickname) {
               return true;
           }
       }
       return false;
-  }
+    }
+    }
 
   
 
