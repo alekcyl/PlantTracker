@@ -50,11 +50,11 @@
 var jsCalendar = (function(){
 
     //plants array
-    var plants = [];
-    var currentSelectedDay;
-    var plantFormVisibility = true;
-    var currentDayPlants = [];
-
+    let plants = [];
+    let currentSelectedDay;
+    let plantFormVisibility = true;
+    let currentDayPlants = [];
+    let taskDays = [];
     // Constructor
     function JsCalendar(){
         // No parameters
@@ -680,15 +680,19 @@ var jsCalendar = (function(){
             this._elements.body.appendChild(this._elements.bodyRows[i]);
             // 7 days
             for (j = 0; j < 7; j++) {
-                this._elements.bodyCols.push(document.createElement('td')
+                var tempTd = document.createElement('td');
+                taskDays.push(tempTd);
+                this._elements.bodyCols.push(tempTd
                 );
                 this._elements.bodyRows[i].appendChild(this._elements.bodyCols[i * 7 + j]);
+
                 this._elements.bodyCols[i * 7 + j].addEventListener('click', (function(index){
                     return function (event) {
                         that._eventFire('date', that._active[index], event);
-
                         //WHEN TD IS CLICKED
-                        
+
+                        //taskDays.push(this._elements.bodyCols[i*7+j]);
+                        //printTaskDays;
                         //String with day number
                         var tempDateString = JSON.stringify(that._active[index]);
                         var dateStringNumber = tempDateString.substring(9,11);
@@ -697,21 +701,10 @@ var jsCalendar = (function(){
                         var tempDateStringForDay = String(that._active[index]);
                         var dayString = tempDateStringForDay.substring(0,3);
 
-                        //currentDayPlants = [];
-                        getDay(dayString);
-                        //displayPlantCare();
-                        //console.log(tempDateStringForDay);
-                        //console.log(that._active[index]);
-                        //console.log(tempDateString);
-                        //console.log(dateStringNumber);
-                        //console.log(dayString);
-
-                        
-                        
+                        checkDay(dayString);
+                
                         currentSelectedDay = dateStringNumber;
                         updateCurrentDaySelection();
-    
-
                     };
                 })(i * 7 + j), false);
             }
@@ -1599,10 +1592,6 @@ var jsCalendar = (function(){
         JsCalendar.autoFind();
     }, false);
 
-
-
-
-
     //label to display current day
     var plantDayText = document.createElement("label");
     plantDayText.setAttribute("id", "plantDayText");
@@ -1611,7 +1600,7 @@ var jsCalendar = (function(){
     document.body.appendChild(plantDayText);
 
     function updateCurrentDaySelection() {
-        plantDayText.textContent = "Current Day Selected: " + currentSelectedDay + " : Your Tasks for the day: ";
+        plantDayText.textContent = "Current Day Selected: " + currentSelectedDay;
     }  
     
     //plant form visibility button
@@ -1632,8 +1621,7 @@ var jsCalendar = (function(){
     }
     plantFormVisibility = !plantFormVisibility;
 }
-    
-    //Plant Button
+    //view plant button
     var plantButton = document.createElement("input");
     plantButton.type = "button";
     plantButton.value = "View Plants";
@@ -1643,26 +1631,32 @@ var jsCalendar = (function(){
     function plantButtonClick() {
         updatePlantsLabel();
     }
-  
-        //Plant Label, displays all plant objects
+        //Plant Label, displays all added plants
     var myGardenLabel = document.createElement("label");
     document.body.appendChild(myGardenLabel)
-        //end plant label
 
     var plantText;
     function updatePlantsLabel() {
        if(plants[0] != null) {
-        plantText = ""
+        plantText = "Your Plants: "
         for(i = 0; i <= plants.length - 1; i++) {
-            plantText += (" Plant Type: " + plants[i].type);
-            plantText += (" Plant Nickname: " + plants[i].nickname);
-            plantText += (" Water Monday: " + plants[i].waterMonday);
-            plantText += (" Water Tuesday: " + plants[i].waterTuesday);
-            plantText += (" Water Wednesday: " + plants[i].waterWednesday);
-            plantText += (" Water Thursday: " + plants[i].waterThursday);
-            plantText += (" Water Friday: " + plants[i].waterFriday);
-            plantText += (" Water Saturday: " + plants[i].waterSaturday);
-            plantText += (" Water Sunday: " + plants[i].waterSunday);
+            plantText += (plants[i].nickname);
+
+            if(i == plants.length-1) {
+
+            }else{
+                plantText += " , ";
+            }
+            
+            //plantText += (" Plant Type: \n" + plants[i].type);
+           //plantText += (" Plant Nickname: " + plants[i].nickname);
+            //plantText += (" Water Monday: " + plants[i].waterMonday);
+            //plantText += (" Water Tuesday: " + plants[i].waterTuesday);
+           //plantText += (" Water Wednesday: " + plants[i].waterWednesday);
+           //plantText += (" Water Thursday: " + plants[i].waterThursday);
+            //plantText += (" Water Friday: " + plants[i].waterFriday);
+            //plantText += (" Water Saturday: " + plants[i].waterSaturday);
+            //plantText += (" Water Sunday: " + plants[i].waterSunday);
         }
         }
     myGardenLabel.textContent = "";
@@ -1670,7 +1664,6 @@ var jsCalendar = (function(){
     document.getElementsByTagName("body")[0].appendChild(br.cloneNode());
     document.getElementsByTagName("body")[0].appendChild(myGardenLabel);
     }
-
 
     //plant adder Form
     var plantForm = document.createElement("div");
@@ -1698,7 +1691,6 @@ var jsCalendar = (function(){
     var daysWaterLabel = document.createElement("label");
     daysWaterLabel.setAttribute("id", "daysWaterLabel");
     daysWaterLabel.textContent = "Select Watering Days!";
-
 
     var waterMondayLabel = document.createElement("label");
     waterMondayLabel.setAttribute("id", "waterMondayLabel");
@@ -1824,7 +1816,6 @@ var jsCalendar = (function(){
     console.log("plant pushed");
   });    
 
-
   var currentDayDisplay = document.createElement('div');
   var currentDayDisplayHeading = document.createElement('label');
   currentDayDisplay.textContent = "Plants to Water:";
@@ -1835,33 +1826,20 @@ var jsCalendar = (function(){
   currentDayDisplay.appendChild(currentDayDisplayHeading);
   document.body.appendChild(currentDayDisplay);
 
-  function displayPlantCare() {
-
-}
-
-  
-  
-  function getDay(input) {
-    //console.log(input);
+  function checkDay(input) {
     if(plants.length != null) {
     for(i = 0; i < plants.length; i++) {
-        //console.log(i);
-
-        
        if(input == "Mon") {
             if(plants[i].waterMonday == true) {
                 currentDayPlants.push(plants[i]);
-                
             }
         } else if(input == "Tue") {
             if(plants[i].waterTuesday == true) {
                 currentDayPlants.push(plants[i]);
-                
             }
         }else if(input == "Wed") {
             if(plants[i].waterWednesday == true) {
                 currentDayPlants.push(plants[i]);
-                
             }
         }else if(input == "Thu") {
             if(plants[i].waterThursday == true) {
@@ -1884,7 +1862,6 @@ var jsCalendar = (function(){
         }
         
     }
-    //displayPlantCare();
     if(currentDayPlants != null) {
         for(i = 0; i < currentDayPlants.length; i++) {
             waterText += currentDayPlants[i].nickname + "  ";
@@ -1895,13 +1872,7 @@ var jsCalendar = (function(){
     } else {
         console.log("no plant care")
     }
-
-
-
-
     }
-
-    //console.log(currentDayPlants.length);
   }
   function isNicknameUsed(nickname) {
       if(currentDayPlants != null) {
@@ -1914,9 +1885,16 @@ var jsCalendar = (function(){
     }
     }
 
-  
-
-  //meow
+  //this._elements.bodyRows.style.color = 'blue' ;
+  //console.log(taskDays[0]);
+  function printTaskDays() {
+  console.log(taskDays.length);
+  for(i = 0; i < taskDays.length; i++) {
+      console.log(taskDays[i]);
+  }
+}
+  //this._elements.bodyCols 
     // Return
+
     return JsCalendar;
 })();
