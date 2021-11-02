@@ -45,6 +45,7 @@
 //iterate through plant objects looking for plants that
 //need to be watered on current day of week
 //display the nickname of all of these plants
+let firstDayOfMonth;
 
 
 var jsCalendar = (function(){
@@ -55,6 +56,7 @@ var jsCalendar = (function(){
     let plantFormVisibility = true;
     let currentDayPlants = [];
     let taskDays = [];
+    
     // Constructor
     function JsCalendar(){
         // No parameters
@@ -489,8 +491,14 @@ var jsCalendar = (function(){
         }
 
         // Get month's first day
-        var first = new Date(date.getTime());
+        first = new Date(date.getTime());
         first.setDate(1);
+
+        console.log(first);
+        firstDayOfMonth = String(first);
+        firstDayOfMonth = firstDayOfMonth.substring(0,3);
+
+        
 
         // First day of the month index
         var firstDay = first.getDay() - (this._options.firstDayOfTheWeek - 1);
@@ -675,15 +683,18 @@ var jsCalendar = (function(){
         this._elements.bodyRows = [];
         this._elements.bodyCols = [];
         // 6 rows
+
+        let tdCounter = 0;
         for (i = 0; i < 6; i++) {
             this._elements.bodyRows.push(document.createElement('tr'));
             this._elements.body.appendChild(this._elements.bodyRows[i]);
             // 7 days
             for (j = 0; j < 7; j++) {
+                tdCounter++;
                 var tempTd = document.createElement('td');
+                tempTd.setAttribute('id', 'day_' + (tdCounter));
                 taskDays.push(tempTd);
-                this._elements.bodyCols.push(tempTd
-                );
+                this._elements.bodyCols.push(tempTd);
                 this._elements.bodyRows[i].appendChild(this._elements.bodyCols[i * 7 + j]);
 
                 this._elements.bodyCols[i * 7 + j].addEventListener('click', (function(index){
@@ -1592,7 +1603,7 @@ var jsCalendar = (function(){
         JsCalendar.autoFind();
     }, false);
 
-    //label to display current day
+//label to display current day
     var plantDayText = document.createElement("label");
     plantDayText.setAttribute("id", "plantDayText");
 
@@ -1603,7 +1614,7 @@ var jsCalendar = (function(){
         plantDayText.textContent = "Current Day Selected: " + currentSelectedDay;
     }  
     
-    //plant form visibility button
+//plant form visibility button
   var addNewPlantButton = document.createElement("input");
   addNewPlantButton.type = "button";
   addNewPlantButton.value = "Toggle New Plant Menu";
@@ -1631,7 +1642,7 @@ var jsCalendar = (function(){
     function plantButtonClick() {
         updatePlantsLabel();
     }
-        //Plant Label, displays all added plants
+    //Plant Label, displays all added plants
     var myGardenLabel = document.createElement("label");
     document.body.appendChild(myGardenLabel)
 
@@ -1698,6 +1709,11 @@ var jsCalendar = (function(){
     var waterDaysMondayInput = document.createElement("input");
     waterDaysMondayInput.setAttribute("type", "checkbox");
     waterDaysMondayInput.setAttribute("id", "monday");
+    waterDaysMondayInput.addEventListener('click', function() {
+    
+
+    
+    });
     
     var waterTuesdayLabel = document.createElement("label");
     waterTuesdayLabel.setAttribute("id", "waterTuesdayLabel");
@@ -1800,7 +1816,29 @@ var jsCalendar = (function(){
     var friIn = document.getElementById('friday').checked;
     var satIn = document.getElementById('saturday').checked;
     var sunIn = document.getElementById('sunday').checked;
-
+    
+    if(document.getElementById('monday').checked == true) {
+        selectMonday();
+    }
+    if(document.getElementById('tuesday').checked == true) {
+        selectTuesday();
+    }
+    if(document.getElementById('wednesday').checked == true) {
+        selectWednesday();
+    }
+    if(document.getElementById('thursday').checked ==true) {
+        selectThursday();
+    }
+    if(document.getElementById('friday').checked == true){
+        selectFriday();
+    }
+    if(document.getElementById('saturday').checked ==true) {
+        selectSaturday();
+    }
+    if(document.getElementById('sunday').checked ==true){
+        selectSunday();
+    }    
+    
     plants.push({
         "type": plantTypeIn,
         "nickname": plantNiIn,
@@ -1884,17 +1922,89 @@ var jsCalendar = (function(){
       return false;
     }
     }
+//
+    function selectMonday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week + 2);
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
 
-  //this._elements.bodyRows.style.color = 'blue' ;
-  //console.log(taskDays[0]);
-  function printTaskDays() {
-  console.log(taskDays.length);
-  for(i = 0; i < taskDays.length; i++) {
-      console.log(taskDays[i]);
-  }
-}
-  //this._elements.bodyCols 
-    // Return
+    function selectTuesday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week + 3);
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
+
+    function selectWednesday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week + 4);
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
+
+    function selectThursday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week + 5);
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
+
+    function selectFriday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week + 6);
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
+
+    function selectSaturday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week + 7);
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
+
+    function selectSunday() {
+        for(i = 0;i<=5;i++) {
+            var week = i*7;
+            var day = (week) + 1;
+            
+            document.getElementById('day_'+day).style.color = 'red';
+        }
+    }
 
     return JsCalendar;
 })();
+
+function adjustFirstDay(firstDay) {
+    if(firstDay == "Mon") {
+        return -1;
+    }else if(firstDay == "Tue") {
+        return -2;
+    }else if(firstDay == "Wed") {
+        return -3;
+    }else if(firstDay == "Thu") {
+        return -4;
+    }else if(firstDay == "Fri") {
+        return -5;
+    }else if(firstDay == "Sat") {
+        return -6;
+    }else if(firstDay == "Sun") {
+        return -7;
+    }else {
+        return 0; 
+    }
+}
