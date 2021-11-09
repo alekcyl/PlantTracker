@@ -29,8 +29,22 @@
 /* plant buton
 */
 
-.jsCalendar .plantButton {
+.topLabel {
+	background-color: blue;
+}
+
+
+
+.plantButton {
 	background: #03A9F4;
+}
+body {
+	text-align: center;
+}
+.col2 {
+	display: inline;
+	width: 50%;
+	align-items:  center;
 }
 
 

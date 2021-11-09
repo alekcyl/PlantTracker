@@ -1,0 +1,80 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./source/jsCalendar.css">
+</head>
+<body>
+    <h1>Plant Calendar</h1>
+    <div class="auto-jsCalendar"></div>
+
+    <script type="text/javascript" src="./source/jsCalendar.js"></script> 
+   
+    <div class = "row"> 
+
+        <div class = "col1" id = "control menu" method = "get">
+            <button id = "toggle plant form">
+                Plant Form Visibility
+            </button>
+            <button id = "view plants button">
+                View Plants
+            </button>
+        </div>
+
+        <div class = "col2" id = "plantInputForm" method = "get">
+
+            <input type = "text" id = "plant type" placeholder = "plant type" >  </input>
+            <input type = "text" id = "nickname" placeholder = "nickname" >  </input>
+        
+            <div>            
+                <label id = "waterMondayLabel">Monday </label>
+                <input id="monday" type = "checkbox"> </input>
+            </div>
+
+
+            <div>
+                <label id = "waterTuesdayLabel">Tuesday </label>
+                <input id="tuesday" type = "checkbox"> </input>
+            </div>
+
+            
+            <div>
+                <label id = "waterWednesdayLabel">Wednesday </label>
+                <input id="wednesday" type = "checkbox"> </input>
+            </div>
+
+            <div>
+                <label id = "waterThursdayLabel">Thursday </label>
+                <input id="thursday" type = "checkbox"> </input>
+            </div>
+           
+            <div>
+                <label id = "waterFridayLabel">Friday </label>
+                <input id="friday" type = "checkbox"> </input>
+            </div>
+            
+            <div>
+                <label id = "waterSaturdayLabel">Saturday </label>
+                <input id="saturday" type = "checkbox"> </input>
+            </div>
+           
+            <div>
+                <label id = "waterSundayLabel">Sunday </label>
+                <input id="sunday" type = "checkbox"> </input>
+    
+            </div>
+
+            <button value = "submit" id ="submitPlantInputButton"> Add Plant
+
+            </button>
+
+        </div>
+
+       <div id = "col3">
+        <label id = "all plants label">
+        </label>
+        <label id = "selected day plants">
+            Plants To Water: 
+        </label>
+       </div> 
+    </div>
+</body>
+</html>
