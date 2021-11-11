@@ -29,15 +29,6 @@
 /* plant buton
 */
 
-.topLabel {
-	background-color: blue;
-}
-
-
-
-.plantButton {
-	background: #03A9F4;
-}
 body {
 	text-align: center;
 }
@@ -46,7 +37,10 @@ body {
 	width: 50%;
 	align-items:  center;
 }
-
+col3 {
+	display: inline;
+	align-items: center;
+}
 
 /* end plant buton
 */
