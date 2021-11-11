@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("plantInputForm").style.display = 'none';
         
         }else {
-            document.getElementById("plantInputForm").style.display = 'block';
+            document.getElementById("plantInputForm").style.display = 'inline';
         }
         plantFormVisibility = !plantFormVisibility;
     });

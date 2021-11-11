@@ -26,8 +26,7 @@
  * 
  */
 
-/* plant buton
-*/
+
 
 body {
 	text-align: center;
@@ -36,11 +35,15 @@ body {
 	display: inline;
 	width: 50%;
 	align-items:  center;
+	font-style: italic;
 }
 col3 {
 	display: inline;
 	align-items: center;
+	font-style: italic;
 }
+
+
 
 /* end plant buton
 */
