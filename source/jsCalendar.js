@@ -39,7 +39,7 @@ let waterText = "";
 document.addEventListener("DOMContentLoaded", function() {
     //document.getElementById("selected day plants").textContent = 
 
-    document.getElementById("toggle plant form").addEventListener("click", function() {
+    document.getElementById("toggle-plant-form").addEventListener("click", function() {
         if(plantFormVisibility) {
             document.getElementById("plantInputForm").style.display = 'none';
         
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         plantFormVisibility = !plantFormVisibility;
     });
 
-    document.getElementById("view plants button").addEventListener("click", function() {
+    document.getElementById("view-plants-button").addEventListener("click", function() {
         if(plants[0] != null) {
             plantText = "Your Plants: "
             for(i = 0; i <= plants.length - 1; i++) {
