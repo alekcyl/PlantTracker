@@ -36,6 +36,7 @@ let plantText;
 let selectedPlants = [];
 let waterText = "";
 
+
 document.addEventListener("DOMContentLoaded", function() {
     //document.getElementById("selected day plants").textContent = 
 
@@ -276,6 +277,8 @@ function adjustFirstDay(firstDay) {
         return 0; 
     }
 }
+
+
 
 var jsCalendar = (function(){
     // Constructor

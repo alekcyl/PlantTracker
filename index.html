@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="./source/jsCalendar.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script src="source/garden.js"></script>
+
     
 
 </head>
@@ -109,10 +110,25 @@
     </div>
 
 
-
 </div>
 
 
+
+    </div>
+
+
+    <div class = "gardenLayoutPlanner">
+        <label id ="Plant Name"> Plant Name</label>
+        <input id = "gardenLayoutPlantName" type = "text">  </input>
+        <button id ="saveNameButton" onClick = "gardenLayoutNameSelected()" >Save Name Selection</button>
+
+        <script>
+            function gardenLayoutNameSelected() {
+                console.log("test");
+                plantNameFunction(document.getElementById("gardenLayoutPlantName").value);
+            }
+            
+        </script>
 
     </div>
 
