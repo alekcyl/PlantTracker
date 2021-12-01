@@ -1,30 +1,42 @@
+//Uses p5.js library to create a garden planner
+
 let plant1;
 let plantName;
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(425, 425);
     background(155,103,60);
 
+    //create grid
+    fill(color("#140d07"));
+
+    for(i = 0; i < 7; i++) {
+        //draw horizontal grid lines
+        rect(0,i * 70, width, 5);
+
+        //draw vertical grid lines
+        rect(i* 70, 0, 5, height);
+    }
+
+    
   }
   
   function draw() {
 
   }
+  //update plant name outside of garden.js file
 var plantNameFunction = function setPlantName(input) {
     plantName = input;
-    //console.log(plantName);
 }
 
 function mousePressed() {
-    //fill(10,250,10);
-    //rectMode(CENTER);
-    //rect(mouseX,mouseY, 50,50);
 
-    if(mouseY > 50) {
+    if(mouseY > 25) {
         plant1 = new plant(mouseX,mouseY, plantName);
         plant1.drawPlant(mouseX,mouseY, plantName);
     }
 }
+//plant sprite object that is drawn on planner
 class plant {
     constructor(xLoc, yLoc, name) {
         this.xLoc = xLoc;
