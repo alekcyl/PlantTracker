@@ -122,10 +122,18 @@
         <input id = "gardenLayoutPlantName" type = "text">  </input>
         <button id ="saveNameButton" onClick = "gardenLayoutNameSelected()" >Save Name Selection</button>
 
+        <label id ="Plant Size"> Plant Size</label>
+        <input id = "gardenLayoutPlantSize" type = "text">  </input>
+        <button id ="saveNameButton" onClick = "gardenLayoutSizeSelected()" >Save Size Selection</button>
+
+
         <script>
             function gardenLayoutNameSelected() {
-                console.log("test");
                 plantNameFunction(document.getElementById("gardenLayoutPlantName").value);
+            }
+
+            function gardenLayoutSizeSelected() {
+                plantSizeFunction(document.getElementById("gardenLayoutPlantSize").value);
             }
             
         </script>

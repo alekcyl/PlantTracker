@@ -2,6 +2,8 @@
 
 let plant1;
 let plantName;
+let plantSize;
+
 
 function setup() {
     createCanvas(425, 425);
@@ -29,6 +31,11 @@ var plantNameFunction = function setPlantName(input) {
     plantName = input;
 }
 
+  //update plant size outside of garden.js file
+  var plantSizeFunction = function setPlantSize(input) {
+    plantSize = input;
+}
+
 function mousePressed() {
 
     if(mouseY > 25) {
@@ -42,15 +49,22 @@ class plant {
         this.xLoc = xLoc;
         this.yLoc = yLoc;
         this.name = name;
+        if(plantSize == null) {
+            this.size = 10;
+        } else {
+            this.size = plantSize;
+        }
+
     }
     drawPlant() {
         rectMode(CENTER);
         noStroke();
         fill(10,250,10);
+        var size = this.size;
 
-        rect(this.xLoc,this.yLoc,10,20);
-        ellipse(this.xLoc+ 10, this.yLoc - 15, 20,30,10);
-        ellipse(this.xLoc - 10, this.yLoc - 15, 20,30,10);
+        rect(this.xLoc,this.yLoc,size, size*2);
+        ellipse(this.xLoc+ size/2 + 5, this.yLoc - size, size*2, size*3,size);
+        ellipse(this.xLoc - size/2 - 5, this.yLoc - size, size*2,size*3,size);
 
         fill(255);
         textSize(20);
