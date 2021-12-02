@@ -57,37 +57,42 @@ Body{
 	width: 150px;
 	height: 80px;
 }
-.oneCol2 {
+#Plant_Size {
+	color: white;
+	font-size: 17;
+	font-family:cursive;
 
 }
-
-.twoCol1 {
-
-	
+#Plant_Name {
+	color: white;
+	font-size: 17;
+	font-family: cursive;
 }
-.twoCol2 {
-
-	
+#saveNameButton {
+	border-color: blue;
 }
-.twoCol3 {
-	
-}
-
-.threeCol1{
+#saveSizeButton {
+	border-color: blue;
 
 }
-.threeCol2 {
-
+#all_plants_label {
+	color: green;
+	font-family:fantasy;
+	font-size: 20;
 }
-
-
-
-
-
-
-
-
-
+#selected_day_plants {
+	color: green;
+	font-family: fantasy;
+	font-size: 20;
+}
+#view-plants-button {
+	color:hotpink;
+	background-color:indigo;
+}
+#toggle-plant-form {
+	color:hotpink;
+	background-color:indigo;
+}
 
 /* Default Theme */
 	/* General style */

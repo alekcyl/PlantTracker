@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 
             }
         }
-        document.getElementById("all plants label").textContent = plantText;
+        document.getElementById("all_plants_label").textContent = plantText;
  
     });
 
@@ -172,7 +172,7 @@ if(currentDayPlants[0] != null) {
     for(i = 0; i < currentDayPlants.length; i++) {
         waterText += currentDayPlants[i].nickname + "  ";
     }
-    document.getElementById("selected day plants").textContent = "Plants to Water: " + waterText;
+    document.getElementById("selected_day_plants").textContent = "Plants to Water: " + waterText;
 
     ///reset variables
     currentDayPlants = [];
