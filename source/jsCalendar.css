@@ -26,7 +26,7 @@
  * 
  */
 
-Body{
+ Body{
 	background-color:darkgreen;
 }
 
@@ -92,6 +92,11 @@ Body{
 #toggle-plant-form {
 	color:hotpink;
 	background-color:indigo;
+}
+#temperatureDisplay {
+	color:rgb(252, 9, 9);
+	font-family: fantasy;
+	font-size: 20;
 }
 
 /* Default Theme */
