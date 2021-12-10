@@ -40,6 +40,7 @@ let waterText = "";
 document.addEventListener("DOMContentLoaded", function() {
     //document.getElementById("selected day plants").textContent = 
 
+    //button to close new plant form
     document.getElementById("toggle-plant-form").addEventListener("click", function() {
         if(plantFormVisibility) {
             document.getElementById("plantInputForm").style.display = 'none';
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
         plantFormVisibility = !plantFormVisibility;
     });
 
+    //button to view all plants
     document.getElementById("view-plants-button").addEventListener("click", function() {
         if(plants[0] != null) {
             plantText = "Your Plants: "
@@ -64,10 +66,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 
             }
         }
+        //label that displays all plants
         document.getElementById("all_plants_label").textContent = plantText;
  
     });
 
+    //submit button for plant input form
     document.getElementById("submitPlantInputButton").addEventListener("click", function() {
             console.log("submitPlantInput");
             
@@ -81,9 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
             var satIn = document.getElementById('saturday').checked;
             var sunIn = document.getElementById('sunday').checked;
             
-            console.log(monIn);
-            console.log(plantTypeIn);
-            console.log(plantNiIn);
             
             if(document.getElementById('monday').checked == true) {
                 selectMonday();
@@ -107,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 selectSunday();
             }    
             
+            //all plants are stored in plants array
             plants.push({
                 "type": plantTypeIn,
                 "nickname": plantNiIn,
@@ -118,17 +120,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 "waterSaturday": satIn,
                 "waterSunday": sunIn,
             });
-            
-            console.log("plant pushed");
+        
                
     }
     );
     });
-    //update label to display current day
-// function updateCurrentDaySelection() {
-//     console.log("update current day");
-//     document.getElementById("selected day plants").textContent = "Current Day Selected: " + currentSelectedDay;
-// }  
 
 
 function checkDay(input) {//input day of week. if any plant needs to be watered on input day, add plant to currentDayPlants
@@ -183,6 +179,7 @@ if(currentDayPlants[0] != null) {
 }
 }
 }
+//check to see if plant Nickname is already used
 function isNicknameUsed(nickname) {
   if(currentDayPlants != null) {
   for(i = 0; i < currentDayPlants.length; i++) {
@@ -193,7 +190,7 @@ function isNicknameUsed(nickname) {
   return false;
 }
 }
-//
+//functions to see what days plants must be watered. If any plant needs care on a day, the td element is set to red
 function selectMonday() {
     for(i = 0;i<=5;i++) {
         var week = i*7;
@@ -257,7 +254,7 @@ function selectSunday() {
     }
 }
 
-
+//find the true first day of the month on the calendar
 function adjustFirstDay(firstDay) {
     if(firstDay == "Mon") {
         return -1;
@@ -937,7 +934,6 @@ var jsCalendar = (function(){
                         checkDay(dayString);
                 
                         currentSelectedDay = dateStringNumber;
-                        //updateCurrentDaySelection();
                     };
                 })(i * 7 + j), false);
             }

@@ -143,19 +143,15 @@
         </script>
 
         <script>
-            // var url = "http://anyorigin.com/go?url=" + encodeURIComponent("https://www.accuweather.com/en/us/hamden/06514/weather-forecast/332273" + "&callback=?");
-            // var temperature = $(".temp").text();
-            // console.log(temperature);
-   
+
+            //api call to open weather api to recieve temperature data in New Haven
             fetch('https://api.openweathermap.org/data/2.5/weather?id=4839366&appid=f8eba12a13458d31b9bd3e4abbf22a4b')
                 .then(response => response.json())
                 .then((data) => {
-                    //console.log(data);
-
+                
                     tempValue = data['main']['temp'];
                     tempValue = Math.round(9/5*(tempValue - 273) + 32);
 
-                    //console.log("temperature: " + tempValue);
                     document.getElementById("temperatureDisplay").innerHTML = ("New Haven Temperature: " + tempValue + " Degrees"); 
                 });
             
